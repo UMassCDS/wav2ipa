@@ -574,6 +574,7 @@ def main(
     hf_models: list[str] | None = None,
     verbose_results_dir: Path | None = None,
     is_remove_space: bool = False,
+    is_normalize_ipa: bool = False,
     use_gpu: bool = False,
     num_proc: int | None = None,
     edit_dist_dir: Path | None = None,
@@ -609,7 +610,13 @@ def main(
 
         if len(non_empty_test_data) > 0:
             print("Getting predictions for audio with non-empty gold-standard transcriptions")
-            predictions = get_clean_predictions(non_empty_test_data, pipe, num_proc=num_proc, is_remove_space=is_remove_space)
+            predictions = get_clean_predictions(
+                non_empty_test_data,
+                pipe,
+                num_proc=num_proc,
+                is_remove_space=is_remove_space,
+                is_normalize_ipa=is_normalize_ipa,
+            )
             print("Predictions data preview:")
             print(predictions[0])
 
@@ -627,7 +634,7 @@ def main(
         if len(empty_test_data) > 0:
             print("Getting predictions for audio with empty gold-standard transcriptions")
             empty_test_data_predictions = get_clean_predictions(
-                empty_test_data, pipe, num_proc=num_proc, is_remove_space=is_remove_space
+                empty_test_data, pipe, num_proc=num_proc, is_remove_space=is_remove_space, is_normalize_ipa=is_normalize_ipa
             )
             print("Predictions for hallucinations data preview:")
             print(empty_test_data_predictions[0])
@@ -698,6 +705,10 @@ def main_cli():
     parser.add_argument("-ns", "--no_space", action="store_true", help="Use this flag remove spaces in IPA transcription.")
 
     parser.add_argument(
+        "-ni", "--normalize_ipa", action="store_true", help="Use this flag remove spaces in IPA transcription."
+    )
+
+    parser.add_argument(
         "-g",
         "--use_gpu",
         action="store_true",
@@ -720,6 +731,7 @@ def main_cli():
         args.hf_models,
         args.verbose_results_dir,
         args.no_space,
+        args.normalize_ipa,
         args.use_gpu,
         args.num_proc,
         args.edit_dist_dir,

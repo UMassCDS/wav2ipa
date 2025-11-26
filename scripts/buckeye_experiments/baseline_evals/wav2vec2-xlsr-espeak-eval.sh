@@ -24,4 +24,4 @@ conda activate ./env_cuda124
 multipa-evaluate --hf_models facebook/wav2vec2-xlsr-53-espeak-cv-ft \
  --eval_out $EVAL_RESULTS_CSV \
  --verbose_results_dir $DETAILED_RESULTS_DIR \
- --no_space --data_dir $DATA_DIR
+ --no_space --normalize_ipa --data_dir $DATA_DIR
