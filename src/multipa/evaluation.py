@@ -434,7 +434,9 @@ class ModelEvaluator:
         conf_matrix.to_csv(directory / f"{csv_base_name}_confusion_matrix.csv", index=False)
 
 
-def preprocess_test_data(test_dataset: datasets.Dataset, is_remove_space: bool = False, num_proc: int | None = None):
+def preprocess_test_data(
+    test_dataset: datasets.Dataset, is_remove_space: bool = False, is_normalize_ipa=False, num_proc: int | None = None
+):
     """
     Filters the test dataset into examples with non-empty and empty transcriptions,
     since they should be evaluated separately.
@@ -443,6 +445,7 @@ def preprocess_test_data(test_dataset: datasets.Dataset, is_remove_space: bool =
     Args:
         test_dataset: Huggingface dataset you'll use for evaluation
         is_remove_space: Filter out spaces in IPA strings if true
+        is_normalize_ipa: Set to True to make common IPA-compliant substitutions
         num_proc: The number of processes to use for multiprocessing. If None, no multiprocessing is used.
 
     Returns:
@@ -450,7 +453,7 @@ def preprocess_test_data(test_dataset: datasets.Dataset, is_remove_space: bool =
     """
     # Set sampling rate to 16K
     input_data = test_dataset.cast_column("audio", datasets.Audio(sampling_rate=16_000)).map(
-        lambda x: clean_text(x, is_remove_space=is_remove_space), num_proc=num_proc
+        lambda x: clean_text(x, is_remove_space=is_remove_space, is_normalize_ipa=is_normalize_ipa), num_proc=num_proc
     )
 
     empty_test_data = input_data.filter(lambda x: x["ipa"] == EMPTY_TRANSCRIPTION, num_proc=num_proc)
@@ -538,6 +541,7 @@ def get_clean_predictions(
     audio_key: str = "audio",
     text_key: str = "text",
     is_remove_space: bool = True,
+    is_normalize_ipa: bool = False,
 ):
     """Predicts transcriptions for the audio dataset using the transform pipeline, then
     puts the clean transcription text in the "prediction" column
@@ -549,13 +553,15 @@ def get_clean_predictions(
         audio_key: Column storing audio in dataset. Defaults to "audio".
         text_key: Column where transcriptions are put by the pipeline object. Defaults to "text".
         is_remove_space: Whether or not to remove spaces from transcriptions. Defaults to True.
+        is_normalize_ipa: Set to true to make common substitutions to IPA-compliant symbols using ipatok.tokenise. Defaults to False.
 
     Returns:
         datasets.Dataset with clean transcription text in "prediction"
     """
     predictions_dataset = datasets.Dataset.from_list(transformer_pipe(audio_dataset[audio_key]))
     predictions_dataset = predictions_dataset.map(
-        lambda x: clean_text(x, text_key=text_key, is_remove_space=is_remove_space), num_proc=num_proc
+        lambda x: clean_text(x, text_key=text_key, is_remove_space=is_remove_space, is_normalize_ipa=is_normalize_ipa),
+        num_proc=num_proc,
     )
     predictions_dataset = predictions_dataset.rename_column(text_key, PREDICTION_KEY)
     return predictions_dataset
