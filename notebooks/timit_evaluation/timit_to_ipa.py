@@ -1,5 +1,7 @@
-import os
 import csv
+import os
+import sys
+
 from phonecodes import phonecodes
 
 print(phonecodes.CODES)
@@ -61,6 +63,9 @@ def process_timit_directory(root_dir, output_csv, dataset_name):
 
 # Example usage
 if __name__ == "__main__":
-    root_complete = "/Users/parthbhangla/Desktop/Multipa_Datasets/TIMIT/COMPLETE"
-
+    if len(sys.argv) > 1:
+        root_complete = sys.argv[1]
+    else:
+        root_complete = "/Users/parthbhangla/Desktop/Multipa_Datasets/TIMIT/COMPLETE"
+    print("Processing TIMIT from directory:", root_complete)
     process_timit_directory(root_complete, "complete_ipa.csv", "COMPLETE")
