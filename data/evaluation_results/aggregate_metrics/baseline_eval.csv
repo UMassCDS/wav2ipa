@@ -1,3 +1,0 @@
-model,mean_phone_error_rate,mean_phone_feature_error_rate,mean_feature_error_rate,substitutions,insertions,deletions
-facebook/wav2vec2-lv-60-espeak-cv-ft,0.6091578841839489,6.2513207980573595,0.23515541224019346,51590,15992,13050
-ctaguchi/wav2vec2-large-xlsr-japlmthufielta-ipa1000-ns,0.7903115985947834,8.195281223337927,0.2489669540001629,94167,11692,23881
