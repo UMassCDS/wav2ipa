@@ -14,7 +14,7 @@ import datasets
 from phonecodes import phonecodes
 import soundfile as sf
 import transformers
-import tqdm
+from tqdm import tqdm
 
 
 import multipa.data_utils
@@ -27,8 +27,7 @@ def allosaurus_predict(
     import allosaurus.app
     import allosaurus.bin.download_model
 
-    allosaurus_model_name = f"allosaurus_{model}_{phone_inventory}"
-    allosaurus.bin.download_model.download_model(allosaurus_model_name)
+    allosaurus.bin.download_model.download_model(model)
 
     print("Evaluating allosaurus. Model:", model, "Phone inventory:", phone_inventory)
     model_predictions = []
