@@ -20,17 +20,5 @@ Evaluation/
 - `ctaguchi/wav2vec2-large-xlsr-japlmthufielta-ipa1000-ns` (Taguchi)
 - `Allosaurus` (Model: `eng2102`)
 - Whisper to Epitran pipelines
-
-## Epitran Dependency For Allosaraus
-
-Epitran or other tools that require `flite` and `lex_lookup`, follow these installation steps:
-
-```bash
-git clone http://github.com/festvox/flite
-cd flite
-./configure && make
-sudo make install
-cd testsuite
-make lex_lookup
-sudo cp lex_lookup /usr/local/bin
-```
+- `excalibur12/wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified` and `excalibur12/wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified` - output needs to be converted from the TIMIT symbol set to the IPA
+- 

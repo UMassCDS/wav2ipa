@@ -240,7 +240,6 @@ def main_cli():
         "--base_model",
         type=str,
         default="facebook/wav2vec2-large-xlsr-53",
-        choices=["facebook/wav2vec2-xls-r-300m", "facebook/wav2vec2-large-xlsr-53"],
         help="The base pre-trained speech recognition model to use.",
     )
 
