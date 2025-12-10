@@ -26,7 +26,7 @@ multipa-evaluate --local_models \
   $MODEL_DIR/fine_tune_data_seed_bs32_1/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa \
   $MODEL_DIR/fine_tune_data_seed_bs32_2/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa \
   $MODEL_DIR/fine_tune_data_seed_bs32_3/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa \
-  $MODEL_DIR/fine_tune_data_seed_bs32_3/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa \
+  $MODEL_DIR/fine_tune_data_seed_bs32_4/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa \
  --eval_out $EVAL_RESULTS_CSV \
  --verbose_results_dir $DETAILED_RESULTS_DIR \
  --edit_dist_dir $EDIT_DIST_DIR \
