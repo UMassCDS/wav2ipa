@@ -8,7 +8,9 @@ Fair warning that this code is a hot mess and intended for evaluation and analys
 Using it for more general purpose inference is not recommended.
 """
 
+import re
 import tempfile
+from typing import Literal
 
 import datasets
 from phonecodes import phonecodes
@@ -19,6 +21,10 @@ from tqdm import tqdm
 
 import multipa.data_utils
 import multipa.evaluation
+
+# Post processing map for TIMIT dataset and models not trained on Buckeye
+TIMIT_AND_OTHER_REDUCED_MAPPING = phonecodes.phonecode_tables.TIMIT_IPA_TO_TIMIT_BUCKEYE_SHARED
+TIMIT_AND_OTHER_REDUCED_MAPPING["ː"] = ""
 
 
 def allosaurus_predict(
@@ -107,7 +113,7 @@ def hf_to_phonecodes(
     # convert to ipa
     predictions_dataset = predictions_dataset.map(
         lambda x: phonecodes_convert_batch(x, in_code, out_code, post_conversion_mapping=ipa_post_processing_map),
-        num_proc=device,
+        num_proc=num_proc,
     )
     # clean prediction output
     predictions_dataset = predictions_dataset.map(
@@ -119,3 +125,23 @@ def hf_to_phonecodes(
     predictions_dataset = predictions_dataset.rename_column(out_code, multipa.evaluation.PREDICTION_KEY)
     predictions_dataset = predictions_dataset.rename_column(in_code, f"{in_code}_{multipa.evaluation.PREDICTION_KEY}")
     return predictions_dataset
+
+
+def post_process_reduction(dataset: datasets.Dataset, column: str, ipa_source: Literal["buckeye", "other"], num_proc):
+    """Postprocess IPA reduction mapping to find and replace on datasets"""
+    reduction_mapping = TIMIT_AND_OTHER_REDUCED_MAPPING
+    if ipa_source == "buckeye":
+        reduction_mapping = phonecodes.phonecode_tables.BUCKEYE_IPA_TO_TIMIT_BUCKEYE_SHARED
+
+    pattern = "|".join(re.escape(k) for k in reduction_mapping.keys())
+
+    # Nested function to find and replace strings in each row of the dataset
+    def batch_find_and_replace(batch):
+        input_string = batch[column]
+        replacement_str = re.sub(pattern, lambda match: reduction_mapping[match.group()], input_string)
+        batch[column] = replacement_str
+
+    return dataset.map(
+        lambda x: batch_find_and_replace(x),
+        num_proc=num_proc,
+    )
