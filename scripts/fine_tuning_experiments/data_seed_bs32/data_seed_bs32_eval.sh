@@ -22,7 +22,7 @@ module load conda/latest
 conda activate ./env_cuda124
 
 multipa-evaluate --local_models \
-  $MODEL_DIR/fine_tune_hyperparam_tuning_1/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa
+  $MODEL_DIR/fine_tune_hyperparam_tuning_1/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa \
   $MODEL_DIR/fine_tune_data_seed_bs32_1/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa \
   $MODEL_DIR/fine_tune_data_seed_bs32_2/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa \
   $MODEL_DIR/fine_tune_data_seed_bs32_3/wav2vec2-large-lv60_phoneme-timit_english_timit-4k-buckeye-ipa \
