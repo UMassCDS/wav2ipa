@@ -127,13 +127,41 @@ def hf_to_phonecodes(
     return predictions_dataset
 
 
-def post_process_reduction(dataset: datasets.Dataset, column: str, ipa_source: Literal["buckeye", "other"], num_proc):
-    """Postprocess IPA reduction mapping to find and replace on datasets"""
-    reduction_mapping = TIMIT_AND_OTHER_REDUCED_MAPPING
-    if ipa_source == "buckeye":
-        reduction_mapping = phonecodes.phonecode_tables.BUCKEYE_IPA_TO_TIMIT_BUCKEYE_SHARED
+def get_reduction_pattern(reduction_mapping: dict[str, str]):
+    return "|".join(re.escape(k) for k in reduction_mapping.keys())
 
-    pattern = "|".join(re.escape(k) for k in reduction_mapping.keys())
+
+def dataset_reduction_greedy_find_and_replace(
+    dataset: datasets.Dataset,
+    column: str,
+    ipa_source: Literal["buckeye", "timit"],
+    num_proc: int,
+    custom_reduction_mapping: dict[str, str] | None = None,
+):
+    """Convert symbols in entries from dataset column according to the specified reduction mapping using a
+    greedy find and replace.
+
+    Args:
+        dataset: Input dataset
+        column: Column in which to perform symbol replacements
+        ipa_source: Choose from a predefined "buckeye" or "timit" reduction mapping.
+        num_proc: How many processes to use when running mapping
+        custom_reduction_mapping: Set to override reduction mapping looked up using the ipa_source param. Defaults to None
+
+    Returns:
+        The dataset with symbols in the specified column replaced according to the reduction mapping.
+    """
+
+    if ipa_source.lower() == "buckeye":
+        reduction_mapping = phonecodes.phonecode_tables.BUCKEYE_IPA_TO_TIMIT_BUCKEYE_SHARED
+    elif ipa_source.lower() == "timit":
+        reduction_mapping = TIMIT_AND_OTHER_REDUCED_MAPPING
+    elif custom_reduction_mapping is not None:
+        reduction_mapping = custom_reduction_mapping
+    else:
+        raise ValueError("You must specify a non-empty reduction mapping")
+
+    pattern = get_reduction_pattern(reduction_mapping)
 
     # Nested function to find and replace strings in each row of the dataset
     def batch_find_and_replace(batch):
@@ -145,3 +173,21 @@ def post_process_reduction(dataset: datasets.Dataset, column: str, ipa_source: L
         lambda x: batch_find_and_replace(x),
         num_proc=num_proc,
     )
+
+
+def greedy_reduction_find_and_replace(input_string: str, reduction_mapping: dict[str, str]):
+    """Greedy find and replace an ordered symbol mapping (reduction).
+    This is just another version of the post_process_reduction function that works directly on strings and
+    can be used easily in numpy or pandas data structures.
+
+    Args:
+        input_string: String in which to replace symbols
+        reduction_mapping: Custom ordered mapping for greedy replacement search
+
+    Returns:
+        A copy of the original string with any symbols replaced according to the mapping
+    """
+    replacement_str = re.sub(
+        get_reduction_pattern(reduction_mapping), lambda match: reduction_mapping[match.group()], input_string
+    )
+    return replacement_str
