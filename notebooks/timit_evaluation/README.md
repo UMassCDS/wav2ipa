@@ -1,6 +1,6 @@
-# Evaluation
+# TIMIT Evaluation
 
-This folder contains evaluation notebook for evaluating multiple phonetic transcription models on the **TIMIT** dataset using **IPA (International Phonetic Alphabet)** transcriptions.
+This folder contains notebooks and scripts for evaluating multiple phonetic transcription models on the **TIMIT** dataset using **IPA (International Phonetic Alphabet)** transcriptions.
 
 ## Directory Structure
 ```text
@@ -29,6 +29,7 @@ audio_filename,ipa_transcription
 ```
 
 ## Models Evaluated
+To successfully run these notebooks, there should be evaluation results in ../data/timit_results corresponding to the following models:
 - `ginic/data_seed_bs64_4_wav2vec2-large-xlsr-53-buckeye-ipa` (Ours - Multipa)
 - `ctaguchi/wav2vec2-large-xlsr-japlmthufielta-ipa1000-ns` (Taguchi)
 - `Allosaurus` (Model: `eng2102`)
