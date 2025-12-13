@@ -187,7 +187,10 @@ def greedy_reduction_find_and_replace(input_string: str, reduction_mapping: dict
     Returns:
         A copy of the original string with any symbols replaced according to the mapping
     """
-    replacement_str = re.sub(
-        get_reduction_pattern(reduction_mapping), lambda match: reduction_mapping[match.group()], input_string
-    )
-    return replacement_str
+    try:
+        replacement_str = re.sub(
+            get_reduction_pattern(reduction_mapping), lambda match: reduction_mapping[match.group()], input_string
+        )
+        return replacement_str
+    except TypeError:
+        raise TypeError(f"Expected string or bytes-like object, got '{input_string}' with type '{type(input_string)}'")
