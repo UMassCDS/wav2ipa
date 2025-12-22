@@ -1,7 +1,5 @@
 import pytest
 
-from phonecodes import phonecodes
-
 import multipa.evaluation_extras
 
 
@@ -11,9 +9,20 @@ import multipa.evaluation_extras
         ("abc", {"ab": "x", "b": "y"}, "xc"),
         (
             "uʌɾ̃aɪheɪʔhiɹɪnmaɪsɛlfɑn",
-            phonecodes.phonecode_tables.BUCKEYE_IPA_TO_TIMIT_BUCKEYE_SHARED,
+            multipa.evaluation_extras.BUCKEYE_REDUCED_MAPPING,
             "uənaɪheɪʔhiɹɪnmaɪsɛlfɑn",
         ),
+        (
+            "jɪɾ̃oʊaɪaɪɾɪnhævɡʊɾɪkspiɹĩtsʌswɪθfɔstɹ̩hoʊmsɛn",
+            multipa.evaluation_extras.BUCKEYE_REDUCED_MAPPING,
+            "jɪnoʊaɪaɪɾɪnhævɡʊɾɪkspiɹitsəswɪθfɔstɹ̩hoʊmsɛn",
+        ),
+        (
+            "aɪdseɪʌnãɪ̃ntĩsɛvɪniθɹi",
+            multipa.evaluation_extras.BUCKEYE_REDUCED_MAPPING,
+            "aɪdseɪənaɪntisɛvɪniθɹi",
+        ),
+        ("wɪθlɪmɪɾɪmʌɾ̃ĩ", multipa.evaluation_extras.BUCKEYE_REDUCED_MAPPING, "wɪθlɪmɪɾɪməni"),
     ],
 )
 def test_greedy_reduction_find_and_replace(in_str, mapping, expected):
