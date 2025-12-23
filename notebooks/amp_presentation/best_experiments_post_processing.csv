@@ -1,10 +1,10 @@
 ,Experiment group,Model source,experiment_label,phone_error_rates,phone_feature_error_rates,feature_error_rates
-1,Buckeye fine-tuned on full gender balanced train set,Buckeye fine-tuned,train_duration_20000_samples_4,0.24556651310972916,3.8014536982345604,0.14396924537953745
-2,Buckeye fine-tuned on full train split,Buckeye fine-tuned,full_dataset_train_5,0.24886416774570705,3.8307819780796746,0.14204450698044174
-5,Lee 2025 fine-tuned again on Buckeye,Buckeye fine-tuned,fine_tune_data_seed_bs32_3,0.2596927987083064,3.781420227078821,0.1401467014046281
-3,Buckeye fine-tuned: balanced gender,Buckeye fine-tuned,data_seed_bs64_1,0.27243578089757053,4.1857731180678615,0.14679805170819857
-4,Lee 2025 Wav2Vec2.0 TIMIT fine-tuned,Lee 2025 Wav2Vec2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified,0.4638220337634772,5.547917897223863,0.17683117164398066
+1,Buckeye fine-tuned on full gender balanced train set,Buckeye fine-tuned,train_duration_20000_samples_4,0.24556651310972916,3.8014536982345604,0.1439692453795374
+2,Buckeye fine-tuned on full train split,Buckeye fine-tuned,full_dataset_train_5,0.248864167745707,3.8307819780796746,0.14204450698044171
+5,Lee 2025 fine-tuned again on Buckeye,Buckeye fine-tuned,fine_tune_data_seed_bs32_3,0.25969279870830636,3.781420227078821,0.14014670140462807
+3,Buckeye fine-tuned: balanced gender,Buckeye fine-tuned,data_seed_bs64_1,0.27243578089757053,4.1857731180678615,0.1467980517081985
+4,Lee 2025 Wav2Vec2.0 TIMIT fine-tuned,Lee 2025 Wav2Vec2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified,0.4638220337634772,5.547917897223863,0.17683117164398063
 8,Whisper + Epitran,Whisper + Epitran,openai_whisper-medium.en_to_epitran,0.523708495226359,7.242304915665813,0.17473939689170906
-7,Wav2Vec2.0 + Espeak,Wav2Vec2.0 + Espeak,facebook_wav2vec2-lv-60-espeak-cv-ft,0.5534797689213821,5.92228621119643,0.1670860823627638
-0,Allosaurus English,Allosaurus English,allosaurus_eng2102_eng,0.6362434887158308,7.503511189866773,0.1727286775127566
-6,Taguchi et al. 2023,Taguchi et al. 2023,ctaguchi_wav2vec2-large-xlsr-japlmthufielta-ipa1000-ns,0.7584272567592645,8.057319354203583,0.20120309725388622
+7,Wav2Vec2.0 + Espeak,Wav2Vec2.0 + Espeak,facebook_wav2vec2-lv-60-espeak-cv-ft,0.5534797689213821,5.92228621119643,0.16708608236276376
+0,Allosaurus English,Allosaurus English,allosaurus_eng2102_eng,0.6362434887158308,7.503511189866773,0.17272867751275658
+6,Taguchi et al. 2023,Taguchi et al. 2023,ctaguchi_wav2vec2-large-xlsr-japlmthufielta-ipa1000-ns,0.7584272567592645,8.057319354203583,0.2012030972538862
