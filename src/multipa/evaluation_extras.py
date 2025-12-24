@@ -160,7 +160,7 @@ def dataset_reduction_greedy_find_and_replace(
     """
 
     if ipa_source.lower() == "buckeye":
-        reduction_mapping = phonecodes.phonecode_tables.BUCKEYE_IPA_TO_TIMIT_BUCKEYE_SHARED
+        reduction_mapping = BUCKEYE_REDUCED_MAPPING
     elif ipa_source.lower() == "timit":
         reduction_mapping = TIMIT_AND_OTHER_REDUCED_MAPPING
     elif custom_reduction_mapping is not None:
@@ -175,6 +175,7 @@ def dataset_reduction_greedy_find_and_replace(
         input_string = batch[column]
         replacement_str = re.sub(pattern, lambda match: reduction_mapping[match.group()], input_string)
         batch[column] = replacement_str
+        return batch
 
     return dataset.map(
         lambda x: batch_find_and_replace(x),
