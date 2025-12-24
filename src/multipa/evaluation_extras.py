@@ -29,10 +29,15 @@ import multipa.evaluation
 # Post processing map for TIMIT dataset and models not trained on Buckeye
 TIMIT_AND_OTHER_REDUCED_MAPPING = phonecodes.phonecode_tables.TIMIT_IPA_TO_TIMIT_BUCKEYE_SHARED
 TIMIT_AND_OTHER_REDUCED_MAPPING["ː"] = ""
-TIMIT_AND_OTHER_REDUCED_MAPPING["ũ"] = "u"  # Emitted by facebook model literally once
-TIMIT_AND_OTHER_REDUCED_MAPPING["ə̥"] = "ə"  # Missed this one in phonecodes the first time around, so making sure it's added
+# Emitted by facebook model literally once
+TIMIT_AND_OTHER_REDUCED_MAPPING["ũ"] = "u"
+# Missed this one in phonecodes the first time around, so making sure it's added regardless of phonecodes version
+TIMIT_AND_OTHER_REDUCED_MAPPING["ə̥"] = "ə"
+# Issue likely introduced by ipa_tok.tokenise
+TIMIT_AND_OTHER_REDUCED_MAPPING["ɜ˞"] = "ɹ̩"
 
-# There are extra versions of nasalized characters that are single symbols instead of the +diacritic versions that appear often
+# There are extra versions of nasalized characters that are single symbols instead of the diacritic versions or
+# diphthong components that appear in phonecodes
 BUCKEYE_REDUCED_MAPPING = phonecodes.phonecode_tables.BUCKEYE_IPA_TO_TIMIT_BUCKEYE_SHARED
 BUCKEYE_REDUCED_MAPPING["õ"] = "o"  # ["0x6f", "0x303"]
 BUCKEYE_REDUCED_MAPPING["õ"] = "o"  # ["0xf5"]

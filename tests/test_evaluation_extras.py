@@ -23,6 +23,7 @@ import multipa.evaluation_extras
             "aɪdseɪənaɪntisɛvɪniθɹi",
         ),
         ("wɪθlɪmɪɾɪmʌɾ̃ĩ", multipa.evaluation_extras.BUCKEYE_REDUCED_MAPPING, "wɪθlɪmɪɾɪməni"),
+        ("jɪɾ̃õʊ̃", multipa.evaluation_extras.BUCKEYE_REDUCED_MAPPING, "jɪnoʊ"),
     ],
 )
 def test_greedy_reduction_find_and_replace(in_str, mapping, expected):
