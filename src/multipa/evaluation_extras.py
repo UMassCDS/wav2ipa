@@ -18,9 +18,13 @@ import soundfile as sf
 import transformers
 from tqdm import tqdm
 
-
 import multipa.data_utils
 import multipa.evaluation
+
+# Unicode character reductions are tricky. Sometimes the ipa_tok.tokenise function outputs different characters than
+# expected, especially single unicode symbol versions as opposed to diacritics. We've listed common cases of this here
+# so that they do not appear in metrics or phone error rates for symbol reductions
+# You can check unicode code points for a string s: [hex(ord(c)) for c in s]
 
 # Post processing map for TIMIT dataset and models not trained on Buckeye
 TIMIT_AND_OTHER_REDUCED_MAPPING = phonecodes.phonecode_tables.TIMIT_IPA_TO_TIMIT_BUCKEYE_SHARED
@@ -30,11 +34,13 @@ TIMIT_AND_OTHER_REDUCED_MAPPING["ə̥"] = "ə"  # Missed this one in phonecodes 
 
 # There are extra versions of nasalized characters that are single symbols instead of the +diacritic versions that appear often
 BUCKEYE_REDUCED_MAPPING = phonecodes.phonecode_tables.BUCKEYE_IPA_TO_TIMIT_BUCKEYE_SHARED
-BUCKEYE_REDUCED_MAPPING["õ"] = "o"
+BUCKEYE_REDUCED_MAPPING["õ"] = "o"  # ["0x6f", "0x303"]
+BUCKEYE_REDUCED_MAPPING["õ"] = "o"  # ["0xf5"]
 BUCKEYE_REDUCED_MAPPING["ĩ"] = "i"
 BUCKEYE_REDUCED_MAPPING["ã"] = "a"
-BUCKEYE_REDUCED_MAPPING["ũ"] = "u"
-BUCKEYE_REDUCED_MAPPING["ẽ"] = "e"
+BUCKEYE_REDUCED_MAPPING["ẽ"] = "e"  # ['0x65', '0x303']
+BUCKEYE_REDUCED_MAPPING["ẽ"] = "e"  # ['0x1ebd']
+BUCKEYE_REDUCED_MAPPING["ũ"] = "u"
 
 
 def allosaurus_predict(

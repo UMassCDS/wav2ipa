@@ -63,7 +63,6 @@ def plot_token_confusion_matrix(
     plt.figure(figsize=figsize)
     ax = sns.heatmap(
         df_to_display,
-        annot=True,
         **kwargs,
     )
     ax.set_title(title, fontsize=fontsize)
