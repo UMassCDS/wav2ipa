@@ -26,12 +26,15 @@ import multipa.evaluation
 TIMIT_AND_OTHER_REDUCED_MAPPING = phonecodes.phonecode_tables.TIMIT_IPA_TO_TIMIT_BUCKEYE_SHARED
 TIMIT_AND_OTHER_REDUCED_MAPPING["ː"] = ""
 TIMIT_AND_OTHER_REDUCED_MAPPING["ũ"] = "u"  # Emitted by facebook model literally once
+TIMIT_AND_OTHER_REDUCED_MAPPING["ə̥"] = "ə"  # Missed this one in phonecodes the first time around, so making sure it's added
 
 # There are extra versions of nasalized characters that are single symbols instead of the +diacritic versions that appear often
 BUCKEYE_REDUCED_MAPPING = phonecodes.phonecode_tables.BUCKEYE_IPA_TO_TIMIT_BUCKEYE_SHARED
 BUCKEYE_REDUCED_MAPPING["õ"] = "o"
 BUCKEYE_REDUCED_MAPPING["ĩ"] = "i"
 BUCKEYE_REDUCED_MAPPING["ã"] = "a"
+BUCKEYE_REDUCED_MAPPING["ũ"] = "u"
+BUCKEYE_REDUCED_MAPPING["ẽ"] = "e"
 
 
 def allosaurus_predict(
