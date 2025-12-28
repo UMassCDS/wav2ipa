@@ -35,8 +35,6 @@ TIMIT_AND_OTHER_REDUCED_MAPPING["ũ"] = "u"
 TIMIT_AND_OTHER_REDUCED_MAPPING["ə̥"] = "ə"
 # Issue likely introduced by ipa_tok.tokenise
 TIMIT_AND_OTHER_REDUCED_MAPPING["ɜ˞"] = "ɹ̩"
-# Override the default mapping to better align with Buckeye transcription guidelines
-TIMIT_AND_OTHER_REDUCED_MAPPING["ɨ"] = "ə"
 
 # There are extra versions of nasalized characters that are single symbols instead of the diacritic versions or
 # diphthong components that appear in phonecodes
