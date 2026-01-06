@@ -147,7 +147,14 @@ def plot_error_rates_by_phone_and_model(
     else:
         plt.figure(figsize=figsize)
         g = sns.lineplot(
-            data=tmp_df, y=err_rate_col, x=phone_col, hue=groupby_key, style=groupby_key, palette=palette, hue_order=hue_order
+            data=tmp_df,
+            y=err_rate_col,
+            x=phone_col,
+            hue=groupby_key,
+            style=groupby_key,
+            palette=palette,
+            hue_order=hue_order,
+            style_order=hue_order,
         )
 
     g.set_xlabel(xlabel, fontsize=fontsize)
