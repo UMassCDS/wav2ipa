@@ -703,10 +703,10 @@ def main_cli():
         ),
     )
 
-    parser.add_argument("-ns", "--no_space", action="store_true", help="Use this flag remove spaces in IPA transcription.")
+    parser.add_argument("-ns", "--no_space", action="store_true", help="Use this flag to remove spaces in IPA transcription.")
 
     parser.add_argument(
-        "-ni", "--normalize_ipa", action="store_true", help="Use this flag remove spaces in IPA transcription."
+        "-ni", "--normalize_ipa", action="store_true", help="Use this flag to normalize common IPA Unicode symbols."
     )
 
     parser.add_argument(
