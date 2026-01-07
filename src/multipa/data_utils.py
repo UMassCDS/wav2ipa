@@ -83,7 +83,8 @@ def clean_text(batch: dict, text_key="ipa", is_remove_space=True, is_normalize_i
         batch (dict): attributes for a dataset sample
         text_key (str, optional): Column/dict key where the desired text is stored. Defaults to "ipa".
         is_remove_space (bool, optional): Set to true to remove whitespace from text. Defaults to True.
-        is_normalize_ipa (bool, optional): Set to true to make common substitutions to IPA-compliant symbols using ipatok.tokenise. Defaults to False.
+        is_normalize_ipa (bool, optional): Set to true to make common substitutions to IPA-compliant symbols
+            using ipatok.tokenise. Defaults to False.
 
     Returns:
         dict: batch with clean text replacing original text_key value

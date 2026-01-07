@@ -553,7 +553,8 @@ def get_clean_predictions(
         audio_key: Column storing audio in dataset. Defaults to "audio".
         text_key: Column where transcriptions are put by the pipeline object. Defaults to "text".
         is_remove_space: Whether or not to remove spaces from transcriptions. Defaults to True.
-        is_normalize_ipa: Set to true to make common substitutions to IPA-compliant symbols using ipatok.tokenise. Defaults to False.
+        is_normalize_ipa: Set to true to make common substitutions to IPA-compliant symbols using ipatok.tokenise.
+            Defaults to False.
 
     Returns:
         datasets.Dataset with clean transcription text in "prediction"
