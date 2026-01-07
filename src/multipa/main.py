@@ -240,7 +240,6 @@ def main_cli():
         "--base_model",
         type=str,
         default="facebook/wav2vec2-large-xlsr-53",
-        choices=["facebook/wav2vec2-xls-r-300m", "facebook/wav2vec2-large-xlsr-53"],
         help="The base pre-trained speech recognition model to use.",
     )
 
@@ -581,6 +580,7 @@ def main_cli():
         ctc_loss_reduction="mean",
         pad_token_id=processor_ipa.tokenizer.pad_token_id,
         vocab_size=len(processor_ipa.tokenizer),
+        ignore_mismatched_sizes=True,
     )
     # This should fix issues with validation loss going to inf, https://discuss.huggingface.co/t/wav2vec2-how-to-correct-for-nan-in-training-and-validation-loss/6089/2
     model.config.ctc_zero_infinity = True

@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Literal
 
 import datasets
+import ipatok
 
 logger = logging.getLogger(__name__)
 
@@ -63,13 +64,27 @@ def replace_none(batch: dict, col_key) -> dict:
     return batch
 
 
-def clean_text(batch: dict, text_key="ipa", is_remove_space=True):
+def normalize_ipa(batch: dict, col_key) -> dict:
+    """Replaces some common substitutes with their IPA-compliant counterparts, e.g. g → ɡ, ɫ → l̴, ʦ → t͡s,
+    using ipatok.tokenise
+    """
+    ipa = batch[col_key]
+    # ipatok.tokenise doesn't preserve whitespace, but we want to preserve it
+    ipa_chunks = ipa.split()
+    normed_ipa_chunks = ["".join(ipatok.tokenise(c, replace=True)) for c in ipa_chunks]
+    batch[col_key] = " ".join(normed_ipa_chunks)
+    return batch
+
+
+def clean_text(batch: dict, text_key="ipa", is_remove_space=True, is_normalize_ipa=False):
     """Basic text pre-processing steps. Replace any None values with the empty string and optionally remove whitespace.
 
     Args:
         batch (dict): attributes for a dataset sample
         text_key (str, optional): Column/dict key where the desired text is stored. Defaults to "ipa".
         is_remove_space (bool, optional): Set to true to remove whitespace from text. Defaults to True.
+        is_normalize_ipa (bool, optional): Set to true to make common substitutions to IPA-compliant symbols
+            using ipatok.tokenise. Defaults to False.
 
     Returns:
         dict: batch with clean text replacing original text_key value
@@ -77,6 +92,10 @@ def clean_text(batch: dict, text_key="ipa", is_remove_space=True):
     batch = replace_none(batch, text_key)
     if is_remove_space:
         batch = remove_space(batch, text_key)
+
+    if is_normalize_ipa:
+        batch = normalize_ipa(batch, text_key)
+
     return batch
 
 

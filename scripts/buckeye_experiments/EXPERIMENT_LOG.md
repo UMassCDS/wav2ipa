@@ -1,4 +1,4 @@
-# About Experiments
+# About buckeye_experiments
 To make it easier to submit jobs to the cluster via `sbatch`, I've created a separate batch script for each model training experiment.
 These are all basically the same code, but the model parameters, data seeds and output paths vary.
 
@@ -20,7 +20,7 @@ Params to vary:
 - Effective batch size: [64, 32] (achieve these by varying batch size per device, number of gpus and grad accumulation steps appropriately)
     - To complete training quickly, you can use 4 or 8 GPUs on Unity, but they have to be large to get enough VRAM.
     - Note: effective batch size = batch per device x gradient accumulation steps x num GPUs
-- Learning rate: [3e-4, 3e-5, 9e4]
+- Learning rate: [3e-4, 3e-5, 9e-4, 75e-5]
 
 
 ## `data_seed`

@@ -1,0 +1,9 @@
+# Results Analysis and Visualizations
+
+These notebooks create data analyses and visualizations to compare model performance on both Buckeye and TIMIT test sets.
+Most of these analyses are final and intended to be included in published work, but some are exploratory and may not yield definitive conclusions.
+
+Some examples of data explorations covered are:
+- demographic performance imbalances across models: amp_evaluation_analysis.ipynb, timit_evaluation_analysis.ipynb
+- error rates on vowel predictions compared with their Pillai scores: vowel_overlap_comparisons.ipynb
+- performance comparisons after vowel reductions: buckeye_post_processing_evaluation.ipynb, timit_post_processing_evaluation.ipynb

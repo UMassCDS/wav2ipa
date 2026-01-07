@@ -5,6 +5,7 @@ from multipa.data_utils import (
     clean_text,
     extract_all_chars_ipa,
     extract_whitespace_delimited_symbols,
+    normalize_ipa,
     BuckeyePreprocessor,
     CommonVoicePreprocessor,
     LibriSpeechPreprocessor,
@@ -106,13 +107,15 @@ def test_clean_text_dataset():
 
 def test_clean_text_keep_spaces():
     examples = [
+        {"text": "g o", "ipa": "ɡ o"},
         {"text": "hello", "ipa": "h ɛ l o"},
         {"text": "U U", "ipa": None},
         {"text": "this is a test", "ipa": "ðɪs ɪz ə tɛst"},
     ]
     input_dataset = datasets.Dataset.from_list(examples)
-    output_dataset = input_dataset.map(lambda x: clean_text(x, is_remove_space=False))
-    assert len(output_dataset) == 3
+    output_dataset = input_dataset.map(lambda x: clean_text(x, is_remove_space=False, is_normalize_ipa=True))
+    assert len(output_dataset) == 4
+    assert {"text": "g o", "ipa": "ɡ o"} in output_dataset
     assert {"text": "hello", "ipa": "h ɛ l o"} in output_dataset
     assert {"text": "U U", "ipa": ""} in output_dataset
     assert {"text": "this is a test", "ipa": "ðɪs ɪz ə tɛst"} in output_dataset
@@ -264,3 +267,18 @@ def test_whitespace_delimited_symbols_batched():
     expected_vocab = set(["d", "dʒ", "ŋ͡m", "c", "cʼ", "ɹ̩", " ", "\t"])
     assert len(vocab["vocab"]) == len(expected_vocab)
     assert set(vocab["vocab"]) == expected_vocab
+
+
+def test_normalize_ipa():
+    examples = [
+        {"text": "go", "ipa": "go"},
+        {"text": "U U", "ipa": ""},
+        {"text": "this is a test", "ipa": "ðɪs ɪz ə tɛst"},
+    ]
+    input_dataset = datasets.Dataset.from_list(examples)
+    output_batch = input_dataset.map(lambda x: normalize_ipa(x, "ipa"))
+
+    assert len(output_batch) == 3
+    assert {"text": "go", "ipa": "ɡo"} in output_batch
+    assert {"text": "U U", "ipa": ""} in output_batch
+    assert {"text": "this is a test", "ipa": "ðɪs ɪz ə tɛst"}

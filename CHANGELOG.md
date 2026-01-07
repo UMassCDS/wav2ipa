@@ -16,6 +16,7 @@ You should also add project tags for each release in Github, see [Managing relea
 - Bash scripts for installation and training on slurm added in the `scripts` folder
 - GitHub action to run tests
 - `visualization` module to support creating standardized plots across jupyter notebooks
+- Option to perform IPA token normalization in the evaluation.py script
 
 ### Changed
 - All build and packaging switched to use only pyproject.toml

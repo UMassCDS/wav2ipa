@@ -17,7 +17,8 @@ def plot_token_confusion_matrix(
     reference_column: str = "reference",
     count_col: str = "count",
     fontsize: int = 14,
-    figsize=(16, 16),
+    figsize: tuple[int, int] = (16, 16),
+    is_normalize_rows: bool = False,
     **kwargs,
 ) -> plt.Axes:
     """Plot a token-level confusion matrix as a heatmap.
@@ -60,10 +61,12 @@ def plot_token_confusion_matrix(
 
     # Transform to pivot table and fill in missiing zeros
     df_to_display = df_to_display.pivot(index=reference_column, columns=predicted_column, values=count_col).fillna(0)
+    # Min max scaling by rows (reference)
+    if is_normalize_rows:
+        df_to_display = df_to_display.apply(lambda x: (x - x.min()) / (x.max() - x.min()), axis=1)
     plt.figure(figsize=figsize)
     ax = sns.heatmap(
         df_to_display,
-        annot=True,
         **kwargs,
     )
     ax.set_title(title, fontsize=fontsize)
@@ -144,7 +147,14 @@ def plot_error_rates_by_phone_and_model(
     else:
         plt.figure(figsize=figsize)
         g = sns.lineplot(
-            data=tmp_df, y=err_rate_col, x=phone_col, hue=groupby_key, style=groupby_key, palette=palette, hue_order=hue_order
+            data=tmp_df,
+            y=err_rate_col,
+            x=phone_col,
+            hue=groupby_key,
+            style=groupby_key,
+            palette=palette,
+            hue_order=hue_order,
+            style_order=hue_order,
         )
 
     g.set_xlabel(xlabel, fontsize=fontsize)
