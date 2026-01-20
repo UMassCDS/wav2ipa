@@ -13,7 +13,7 @@ Buckeye fine-tuned: biased young,Buckeye fine-tuned,vary_individuals_young_only_
 Buckeye fine-tuned: only male speakers,Buckeye fine-tuned,gender_split_0_female_1,0.2976899406534234,4.343948940080068,0.16842406991594625
 Buckeye fine-tuned using 3200 samples gender balanced,Buckeye fine-tuned,train_duration_3200_samples_4,0.32946079449090276,4.8283044562577935,0.16436451465082252
 Buckeye fine-tuned using 1600 samples gender balanced,Buckeye fine-tuned,train_duration_1600_samples_hyperparams_1,0.38293011428121077,6.234142219597033,0.16798425475345777
-Lee 2025 wav2vec 2.0 TIMIT fine-tuned (simplified),Lee 2025 wav2vec 2.0 TIMIT fine-tuned (simplified),excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified,0.4899983790470431,5.67187602546433,0.190233903701598
+Lee 2025 wav2vec 2.0 TIMIT fine-tuned (simplified),Lee 2025 wav2vec 2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified,0.4899983790470431,5.67187602546433,0.190233903701598
 Lee 2025 wav2vec 2.0 TIMIT fine-tuned,Lee 2025 wav2vec 2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k,0.5305876742687339,5.712123449497932,0.20035380577616616
 Whisper + Epitran,Whisper + Epitran,openai_whisper-medium.en_to_epitran,0.5532864746201647,7.350856467808624,0.18762224427285928
 Facebook wav2vec 2.0 + Espeak,Facebook wav2vec 2.0 + Espeak,facebook_wav2vec2-lv-60-espeak-cv-ft,0.612351757714358,6.123629979654787,0.23067052918601735
