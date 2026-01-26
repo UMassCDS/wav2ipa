@@ -45,7 +45,7 @@ Params to vary:
 
 
 ## `vary_individuals`
-These experiments keep the total amount of data equal to half the training data with the gender split 50/50, but further exclude certain speakers completely using the --speaker_restriction argument. This allows us to restrict speakers included in training data in any way. For the purposes of these experiments, we are focussed on the age demogrpahic of the user.
+These experiments keep the total amount of data equal to half the training data with the gender split 50/50, but further exclude certain speakers completely using the --speaker_restriction argument. This allows us to restrict speakers included in training data in any way. For the purposes of these experiments, we are focussed on the age demographic of the user.
 
 For reference, the speakers and their demographics included in the training data are as follows where the speaker age range 'y' means under 30 and 'o' means over 40:
 

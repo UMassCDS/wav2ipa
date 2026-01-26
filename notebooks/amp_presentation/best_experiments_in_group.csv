@@ -1,24 +1,25 @@
 Experiment group,Model source,experiment_label,phone_error_rates,phone_feature_error_rates,feature_error_rates
-Buckeye fine-tuned on full gender balanced train set,Buckeye fine-tuned,train_duration_20000_samples_4,0.252720274123456,3.8693722517555953,0.15871658126553267
-Buckeye fine-tuned using 12800 samples gender balanced,Buckeye fine-tuned,train_duration_12800_samples_1,0.25486610667145615,3.9031633523659517,0.15802997722364764
-Buckeye fine-tuned on full train split,Buckeye fine-tuned,full_dataset_train_5,0.2563076977775713,3.9024660366213824,0.15782096259121822
-Buckeye fine-tuned using 6400 samples gender balanced,Buckeye fine-tuned,train_duration_6400_samples_2,0.26229088265145245,3.9848641464855286,0.16018165597947268
+Full gender balanced train set,Buckeye fine-tuned,train_duration_20000_samples_4,0.252720274123456,3.8693722517555953,0.15871658126553267
+Fine-tuned using 12800 samples gender balanced,Buckeye fine-tuned,train_duration_12800_samples_1,0.25486610667145615,3.9031633523659517,0.15802997722364764
+Full train split,Buckeye fine-tuned,full_dataset_train_5,0.2563076977775713,3.9024660366213824,0.15782096259121822
+Fine-tuned using 6400 samples gender balanced,Buckeye fine-tuned,train_duration_6400_samples_2,0.26229088265145245,3.9848641464855286,0.16018165597947268
 Lee 2025 fine-tuned again on Buckeye,Buckeye fine-tuned,fine_tune_data_seed_bs32_3,0.26715500048295254,3.8558525300255955,0.15595529015892773
-Buckeye fine-tuned: biased female,Buckeye fine-tuned,gender_split_70_female_2,0.2764780108646366,4.231385771477325,0.16405498352043396
-Buckeye fine-tuned: balanced gender,Buckeye fine-tuned,data_seed_bs64_1,0.2798047548788091,4.25968858699219,0.16216627546113996
-Buckeye fine-tuned: only female speakers,Buckeye fine-tuned,gender_split_100_female_4,0.28161740582377975,4.236874056572816,0.16153057338137286
-Buckeye fine-tuned: biased male,Buckeye fine-tuned,gender_split_30_female_4,0.2873174247248087,4.390759335827263,0.16715920912030177
-Buckeye fine-tuned: biased old,Buckeye fine-tuned,vary_individuals_old_only_1,0.2899958951532061,4.449366673229638,0.1665100849944797
-Buckeye fine-tuned: biased young,Buckeye fine-tuned,vary_individuals_young_only_2,0.2931229925415546,4.402490647765308,0.16772571708843892
-Buckeye fine-tuned: only male speakers,Buckeye fine-tuned,gender_split_0_female_1,0.2976899406534234,4.343948940080068,0.16842406991594625
-Buckeye fine-tuned using 3200 samples gender balanced,Buckeye fine-tuned,train_duration_3200_samples_4,0.32946079449090276,4.8283044562577935,0.16436451465082252
-Buckeye fine-tuned using 1600 samples gender balanced,Buckeye fine-tuned,train_duration_1600_samples_hyperparams_1,0.38293011428121077,6.234142219597033,0.16798425475345777
-Lee 2025 Wav2Vec2.0 TIMIT fine-tuned,Lee 2025 Wav2Vec2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified,0.4899983790470431,5.67187602546433,0.190233903701598
+Biased female: 30 percent,Buckeye fine-tuned,gender_split_70_female_2,0.2764780108646366,4.231385771477325,0.16405498352043396
+Balanced gender,Buckeye fine-tuned,data_seed_bs64_1,0.2798047548788091,4.25968858699219,0.16216627546113996
+Only female speakers,Buckeye fine-tuned,gender_split_100_female_4,0.28161740582377975,4.236874056572816,0.16153057338137286
+Biased male: 70 percent,Buckeye fine-tuned,gender_split_30_female_4,0.2873174247248087,4.390759335827263,0.16715920912030177
+Only old speakers,Buckeye fine-tuned,vary_individuals_old_only_1,0.2899958951532061,4.449366673229638,0.1665100849944797
+Only young speakers,Buckeye fine-tuned,vary_individuals_young_only_2,0.2931229925415546,4.402490647765308,0.16772571708843892
+Only male speakers,Buckeye fine-tuned,gender_split_0_female_1,0.2976899406534234,4.343948940080068,0.16842406991594625
+Fine-tuned using 3200 samples gender balanced,Buckeye fine-tuned,train_duration_3200_samples_4,0.32946079449090276,4.8283044562577935,0.16436451465082252
+Fine-tuned using 1600 samples gender balanced,Buckeye fine-tuned,train_duration_1600_samples_2,0.4082530431557871,6.404738465577213,0.16669141061478226
+Lee 2025 wav2vec 2.0 TIMIT fine-tuned (simplified),Lee 2025 wav2vec 2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified,0.4899983790470431,5.67187602546433,0.190233903701598
+Lee 2025 wav2vec 2.0 TIMIT fine-tuned,Lee 2025 wav2vec 2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k,0.5305876742687339,5.712123449497932,0.20035380577616616
 Whisper + Epitran,Whisper + Epitran,openai_whisper-medium.en_to_epitran,0.5532864746201647,7.350856467808624,0.18762224427285928
-Wav2Vec2.0 + Espeak,Wav2Vec2.0 + Espeak,facebook_wav2vec2-lv-60-espeak-cv-ft,0.612351757714358,6.123629979654787,0.23067052918601735
+Facebook wav2vec 2.0 + Espeak,Facebook wav2vec 2.0 + Espeak,facebook_wav2vec2-lv-60-espeak-cv-ft,0.612351757714358,6.123629979654787,0.23067052918601735
 Allosaurus English,Allosaurus English,allosaurus_eng2102_eng,0.6603933050770255,7.605278270000657,0.18252734800492795
 Taguchi et al. 2023,Taguchi et al. 2023,ctaguchi_wav2vec2-large-xlsr-japlmthufielta-ipa1000-ns,0.790347546152822,8.195839075933582,0.24930866982279495
-Buckeye fine-tuned using 400 samples gender balanced,Buckeye fine-tuned,train_duration_400_samples_hyperparams_6,0.9466828087240241,27.446913762551684,0.11025224071066347
-Buckeye fine-tuned using 800 samples gender balanced,Buckeye fine-tuned,train_duration_800_samples_5,0.9709862423847335,28.780288114458223,0.11506288164641998
-Buckeye fine-tuned using 100 samples gender balanced,Buckeye fine-tuned,train_duration_100_samples_3,0.9882429103335587,28.052963181728686,0.09374750873839176
-Buckeye fine-tuned using 200 samples gender balanced,Buckeye fine-tuned,train_duration_200_samples_3,1.055905997710397,24.21381341471418,0.22338678766570624
+Fine-tuned using 800 samples gender balanced,Buckeye fine-tuned,train_duration_800_samples_5,0.9709862423847335,28.780288114458223,0.11506288164641998
+Fine-tuned using 400 samples gender balanced,Buckeye fine-tuned,train_duration_400_samples_5,0.9789187832330605,33.88625549648881,0.031738688386740106
+Fine-tuned using 100 samples gender balanced,Buckeye fine-tuned,train_duration_100_samples_3,0.9882429103335587,28.052963181728686,0.09374750873839176
+Fine-tuned using 200 samples gender balanced,Buckeye fine-tuned,train_duration_200_samples_3,1.055905997710397,24.21381341471418,0.22338678766570624

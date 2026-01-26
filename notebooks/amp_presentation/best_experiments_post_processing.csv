@@ -1,10 +1,11 @@
 ,Experiment group,Model source,experiment_label,phone_error_rates,phone_feature_error_rates,feature_error_rates
 1,Buckeye fine-tuned on full gender balanced train set,Buckeye fine-tuned,train_duration_20000_samples_4,0.24474903779043827,3.800362604187176,0.14392730140515214
 2,Buckeye fine-tuned on full train split,Buckeye fine-tuned,full_dataset_train_5,0.2479095765711477,3.82936273544661,0.14199315480548516
-5,Lee 2025 fine-tuned again on Buckeye,Buckeye fine-tuned,fine_tune_data_seed_bs32_3,0.2588466785645806,3.7803209293167948,0.14011134940046155
+4,Lee 2025 fine-tuned again on Buckeye,Buckeye fine-tuned,fine_tune_data_seed_bs32_3,0.2588466785645806,3.7803209293167948,0.14011134940046155
 3,Buckeye fine-tuned: balanced gender,Buckeye fine-tuned,data_seed_bs64_1,0.27152251576602776,4.184706635164402,0.14676566662125445
-4,Lee 2025 Wav2Vec2.0 TIMIT fine-tuned,Lee 2025 Wav2Vec2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified,0.4500984109040561,5.430014110389185,0.17598547940181752
+6,Lee 2025 wav2vec 2.0 TIMIT fine-tuned (simplified),Lee 2025 wav2vec 2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k_simplified,0.4500984109040561,5.430014110389185,0.17598547940181752
+5,Lee 2025 wav2vec 2.0 TIMIT fine-tuned,Lee 2025 wav2vec 2.0 TIMIT fine-tuned,excalibur12_wav2vec2-large-lv60_phoneme-timit_english_timit-4k,0.46406518199775626,5.472853908249656,0.18108289118929924
 8,Whisper + Epitran,Whisper + Epitran,openai_whisper-medium.en_to_epitran,0.5231712390875938,7.241353284767343,0.17470602522607923
-7,Wav2Vec2.0 + Espeak,Wav2Vec2.0 + Espeak,facebook_wav2vec2-lv-60-espeak-cv-ft,0.5531460459428608,5.9214412285883045,0.16705936235141788
+9,facebook/wav2vec2-lv-60-espeak-cv-ft,facebook/wav2vec2-lv-60-espeak-cv-ft,facebook_wav2vec2-lv-60-espeak-cv-ft,0.5531460459428608,5.9214412285883045,0.16705936235141788
 0,Allosaurus English,Allosaurus English,allosaurus_eng2102_eng,0.6359659171167846,7.502731836975783,0.1727118900346572
-6,Taguchi et al. 2023,Taguchi et al. 2023,ctaguchi_wav2vec2-large-xlsr-japlmthufielta-ipa1000-ns,0.7583065464166069,8.056638445888298,0.2011759564456187
+7,Taguchi et al. 2023,Taguchi et al. 2023,ctaguchi_wav2vec2-large-xlsr-japlmthufielta-ipa1000-ns,0.7583065464166069,8.056638445888298,0.2011759564456187
